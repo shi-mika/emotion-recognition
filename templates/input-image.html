@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CNN</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="/static/bootstrap.min.css">
+	<script src="/static/jquery.min.js"></script>
+	<script>
+		function classifyImage() {
+			var file_data = $('#img').prop('files')[0]
+			var form_data = new FormData()
+			form_data.append('img', file_data)
+			$.ajax({
+				url: '/model-api',
+				cache: false,
+				contentType: false,
+				processData: false,
+				data: form_data,
+				type: 'POST',
+				enctype: 'multipart/form-data',
+				success: function(data) {
+					$('#result').html(data)
+				}
+			})
+		}
+		var loadFile = function(event) {
+	var image = document.getElementById('output');
+	image.src = URL.createObjectURL(event.target.files[0]);
+};
+	</script>
+</head>
+<body>
+<br><br/>
+<h1 class="text-center">Classify Image</h1> <br>
+<div class="text-center">
+	<input class="form-control" type="file" id="img" onChange="classifyImage(), loadFile(event);" />
+	<br><br/><img id="output" width="300"> <br/> <br/>
+	<div id="result"></div>
+</div>
+
+</body>
+<style>
+	body
+	{
+		background-image: linear-gradient(to right, rgba(255, 223, 211), rgba(254, 200, 216), rgba(210, 145, 188), rgba(149, 125, 173), rgba(224, 187, 228));
+	}
+	h1, h2, select, option, input, #result
+	{
+		font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+		font-variant-caps: small-caps;
+	}
+	#output
+	{
+		transform: translateX(500px);
+		float: left;
+	}
+	#result
+	{
+		padding-right: 550px;
+		float: right;
+		font-size: 20px;
+		font-weight: bold;
+		text-shadow: 2px 2px 8px #000000;
+		color: white;
+	}
+
+</style>
+</html>
