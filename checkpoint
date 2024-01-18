@@ -1,0 +1,2 @@
+model_checkpoint_path: "D:\\Downloads\\regression\\emotion_recogUpdated\\emotion_cnn"
+all_model_checkpoint_paths: "D:\\Downloads\\regression\\emotion_recogUpdated\\emotion_cnn"
